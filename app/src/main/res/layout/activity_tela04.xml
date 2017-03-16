@@ -1,0 +1,74 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp" >
+
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvEditarContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="8dp"
+        card_view:cardCornerRadius="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivContatoEditar"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@null"/>
+
+            <TextView
+                android:id="@+id/tvNomeContatoEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivContatoEditar"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textSize="24sp"
+                android:text="@string/nome_contato"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <EditText
+        android:id="@+id/etEmailContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvEditarContato"
+        android:paddingTop="@dimen/margin_elements3"
+        android:textSize="16sp"
+        android:hint="@string/email"/>
+
+    <EditText
+        android:id="@+id/etFoneContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etEmailContato"
+        android:paddingTop="@dimen/margin_elements2"
+        android:textSize="16sp"
+        android:hint="@string/fone"/>
+
+    <Button
+        android:id="@+id/btSalvarContato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_elements2"
+        android:layout_below="@id/etFoneContato"
+        android:text="@string/salvar"
+        android:onClick="salvarContato"/>
+
+</RelativeLayout>

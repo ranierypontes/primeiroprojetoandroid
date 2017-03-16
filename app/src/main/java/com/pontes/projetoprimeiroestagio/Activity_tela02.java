@@ -1,6 +1,8 @@
 package com.pontes.projetoprimeiroestagio;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -12,10 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class Activity_tela02 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    protected TextView tvNomeContato;
+    protected TextView tvPerfilContato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,8 @@ public class Activity_tela02 extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -92,5 +102,11 @@ public class Activity_tela02 extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void editarContato(View view) {
+        tvNomeContato = (TextView) findViewById(R.id.tvNomeContato);
+        tvPerfilContato = (TextView) findViewById(R.id.tvPerfil);
+        startActivity(new Intent(Activity_tela02.this, Activity_tela04.class));
     }
 }

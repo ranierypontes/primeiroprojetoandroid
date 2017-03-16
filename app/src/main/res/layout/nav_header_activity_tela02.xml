@@ -25,7 +25,8 @@
         android:textAlignment="center"
         android:text="@string/nome_contato"
         android:textSize="@dimen/titulo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:onClick="editarContato"/>
 
     <TextView
         android:id="@+id/tvPerfil"
@@ -34,6 +35,7 @@
         android:paddingTop="@dimen/margin_elements0"
         android:textAlignment="center"
         android:text="@string/perfil_contato"
-        android:textSize="@dimen/titulo"/>
+        android:textSize="@dimen/titulo"
+        android:onClick="editarContato"/>
 
 </LinearLayout>
