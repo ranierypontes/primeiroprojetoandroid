@@ -12,11 +12,13 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivEditarContato"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:paddingTop="10dp"
-        app:srcCompat="@drawable/login" />
+        app:srcCompat="@drawable/login"
+        android:clickable="true"
+        android:onClick="editarContato"/>
 
     <TextView
         android:id="@+id/tvNomeContato"

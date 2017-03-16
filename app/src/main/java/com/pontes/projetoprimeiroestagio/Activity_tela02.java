@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class Activity_tela02 extends AppCompatActivity
     private MyAdapter adapter;
     private ArrayList listData;
     private MeusContatos meusContatos;
+    protected ImageView ivEditarContato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +96,7 @@ public class Activity_tela02 extends AppCompatActivity
     public void editarContato(View view) {
         tvNomeContato = (TextView) findViewById(R.id.tvNomeContato);
         tvPerfilContato = (TextView) findViewById(R.id.tvPerfil);
+        ivEditarContato = (ImageView) findViewById(R.id.ivEditarContato);
         startActivity(new Intent(Activity_tela02.this, Activity_tela04.class));
     }
 

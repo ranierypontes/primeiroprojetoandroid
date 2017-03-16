@@ -27,7 +27,7 @@
                 android:scaleType="centerCrop"
                 android:src="@null"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/tvNomeContatoEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textSize="24sp"
-                android:text="@string/nome_contato"/>
+                android:hint="@string/nome_contato"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
