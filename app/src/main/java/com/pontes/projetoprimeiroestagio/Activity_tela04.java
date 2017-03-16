@@ -8,8 +8,6 @@ import android.widget.Button;
 
 public class Activity_tela04 extends AppCompatActivity {
 
-    protected Button btSalvar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +15,6 @@ public class Activity_tela04 extends AppCompatActivity {
     }
 
     public void salvarContato(View view){
-        btSalvar = (Button) findViewById(R.id.btSalvarContato);
 
         startActivity(new Intent(Activity_tela04.this, Activity_tela02.class));
     }

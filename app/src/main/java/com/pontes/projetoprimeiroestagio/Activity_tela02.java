@@ -1,10 +1,13 @@
 package com.pontes.projetoprimeiroestagio;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,11 +22,17 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class Activity_tela02 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ItemClickListener  {
 
     protected TextView tvNomeContato;
     protected TextView tvPerfilContato;
+    private RecyclerView recyclerView;
+    private MyAdapter adapter;
+    private ArrayList listData;
+    private MeusContatos meusContatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +40,6 @@ public class Activity_tela02 extends AppCompatActivity
         setContentView(R.layout.activity_tela02);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,6 +50,15 @@ public class Activity_tela02 extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        meusContatos = new MeusContatos();
+        listData = new ArrayList<>();
+        listData = (ArrayList) meusContatos.listDados();
+        recyclerView = (RecyclerView) findViewById(R.id.rvListaDeContatos);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyAdapter(listData, this);
+        adapter.setItemClick(this);
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -63,28 +72,6 @@ public class Activity_tela02 extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_tela02, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -92,9 +79,9 @@ public class Activity_tela02 extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navMenu01) {
-            Toast.makeText(this, "Exibe Tela 05!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Activity_tela02.this, Activity_tela05.class));
         } else if (id == R.id.navMenu02) {
-            Toast.makeText(this, "Exibe Tela 06 (WebView)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com.br")));
         } else if (id == R.id.navSair) {
             Toast.makeText(this, "Sair!", Toast.LENGTH_SHORT).show();
         }
@@ -108,5 +95,13 @@ public class Activity_tela02 extends AppCompatActivity
         tvNomeContato = (TextView) findViewById(R.id.tvNomeContato);
         tvPerfilContato = (TextView) findViewById(R.id.tvPerfil);
         startActivity(new Intent(Activity_tela02.this, Activity_tela04.class));
+    }
+
+    @Override
+    public void setOnclickListener(int pocisao) {
+        Contato contato = (Contato) listData.get(pocisao);
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + contato.getTelefone()));
+        startActivity(intent);
+        adapter.notifyDataSetChanged();
     }
 }

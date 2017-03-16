@@ -19,7 +19,8 @@
             android:name=".Activity_tela02"
             android:label="@string/title_activity_tela02"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity_tela04"></activity>
+        <activity android:name=".Activity_tela04" />
+        <activity android:name=".Activity_tela05"></activity>
     </application>
 
 </manifest>
