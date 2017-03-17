@@ -26,14 +26,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class Activity_tela02 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ItemClickListener  {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     protected TextView tvNomeContato;
     protected TextView tvPerfilContato;
-    private RecyclerView recyclerView;
-    private MyAdapter adapter;
-    private ArrayList listData;
-    private MeusContatos meusContatos;
     protected ImageView ivEditarContato;
 
     @Override
@@ -51,16 +47,6 @@ public class Activity_tela02 extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        meusContatos = new MeusContatos();
-        listData = new ArrayList<>();
-        listData = (ArrayList) meusContatos.listDados();
-        recyclerView = (RecyclerView) findViewById(R.id.rvListaDeContatos);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter(listData, this);
-        adapter.setItemClick(this);
-        recyclerView.setAdapter(adapter);
 
     }
 
@@ -100,11 +86,4 @@ public class Activity_tela02 extends AppCompatActivity
         startActivity(new Intent(Activity_tela02.this, Activity_tela04.class));
     }
 
-    @Override
-    public void setOnclickListener(int pocisao) {
-        Contato contato = (Contato) listData.get(pocisao);
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + contato.getTelefone()));
-        startActivity(intent);
-        adapter.notifyDataSetChanged();
-    }
 }
